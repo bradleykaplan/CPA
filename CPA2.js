@@ -5,7 +5,7 @@ import { StyleSheet, Button, View, Text, TextInput, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-function HomeScreen({ navigation, props }) {
+function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Home Screen</Text>
@@ -19,7 +19,7 @@ function HomeScreen({ navigation, props }) {
       />
       <Image
         style={{flex:1}}
-        source={{uri:'http://www.blogging4jobs.com/wp-content/uploads/2013/09/my-fantasy-football-team-is-kind-of-a-big-deal.jpg'}}
+        source={{src:'my-fantasy-football-team-is-kind-of-a-big-deal.jpg'}}
       />
     </View>
   );
@@ -29,6 +29,8 @@ function LeagueSettingsScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>League Settings Screen</Text>
+      <TextInput style={{fontSize:20,backgroundColor:'yellow'}}
+                         placeholder="number of QBs" />
       <Button
         title="Go to Lineup"
         onPress={() => navigation.push('Lineup')}
