@@ -12,7 +12,7 @@ const Quiz4 = (props) => {
   const [userid, setUserid] = useState('');
   const [text, setText] = useState('a');
   const [data,setData] = useState([]);
-  const [debugging, setDebugging] = useState(true)
+  const [debugging, setDebugging] = useState(false)
 
   const getCovidData = async (userid) => {
     try{
@@ -46,7 +46,7 @@ const Quiz4 = (props) => {
   const renderItem = ({item}) => {
     return (
       <View style={{flexDirection:'row'}}>
-        <Text style={{flex:1,backgroundColor:'#aaa'}}>{item['name'].slice(0,10)}</Text>
+        <Text style={{flex:1,backgroundColor:'#aaa'}}>{item['name'].slice(0,30)}</Text>
      </View>
   )}
 
@@ -96,7 +96,7 @@ const Quiz4 = (props) => {
                   onPress = {() => setDebugging(!debugging)}
                   />
       <FlatList
-        data={data.slice(0,5)}
+        data={data.slice(0,30)}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
