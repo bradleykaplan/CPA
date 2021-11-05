@@ -1,14 +1,13 @@
-//Original starter code from MathQuiz.js (Quiz 2) (https://github.com/tjhickey724/cs153aFall21/blob/main/components/CovidDemo.js). Some code may be leftover from CovidDemo
+//Original starter code from CovidDemo.js (https://github.com/tjhickey724/cs153aFall21/blob/main/components/CovidDemo.js). Some code may be leftover from CovidDemo
 
 /*
-  MathQuiz2.js - this component will calculate the volume of a cylinder
-  given the cylinder's base's radius and the cylinder's height
+  Quiz4.js - this component will get the names of a github user's repositories
 */
 import React, { useState, useEffect } from "react";
 import { Button, StyleSheet, Text, TextInput, View, FlatList } from "react-native";
 
 
-const MathQuiz2 = (props) => {
+const Quiz4 = (props) => {
   const [loading,setLoading] = useState(true)
   const [userid, setUserid] = useState('');
   const [text, setText] = useState('a');
@@ -121,4 +120,4 @@ const MathQuiz2 = (props) => {
 //<Text> userId:{userid} </Text>
 //<Text> showReps:{debugging.toString()} </Text>
 //<Text>  repos.length = {data.length}</Text>
-export default MathQuiz2;
+export default Quiz4;
