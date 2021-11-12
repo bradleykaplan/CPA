@@ -159,9 +159,9 @@ function TradeScreen({ navigation }) {
     getpoints()
   });
   //not exactly sure how to implement with excel file
-  <FlatList
-        data={data.slice(0,2)}
-      />
+  //<FlatList
+        //data={data.slice(0,2)}
+      ///>
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Trade Screen</Text>
