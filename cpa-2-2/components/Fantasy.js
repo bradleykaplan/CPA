@@ -6,7 +6,7 @@ import * as XLSX from 'xlsx';
 import { StyleSheet, Button, View, Text, TextInput, Image, FlatList } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import readXlsxFile from 'read-excel-file'
+import readXlsxFile from 'read-excel-file';
 
 var bettervalue = 0;
 
@@ -92,7 +92,7 @@ function LeagueSettingsScreen({ navigation }) {
     </View>
   );
 }
-
+//use flatlist(s)
 function LineupScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -134,6 +134,7 @@ function LineupScreen({ navigation }) {
         onPress={() => navigation.push('League Settings')}
       />
       <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+      <Button title="Go to Trade" onPress={() => navigation.push('Trade')} />
       <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
   );
@@ -143,8 +144,8 @@ function TradeScreen({ navigation }) {
   const [loading,setLoading] = useState(true)
   const [data,setData] = useState([]);
   const getpoints = async () => {
-      let cdata = require('./fantasyprojections_test.xlsx')
-      setData(cdata)
+      const qbsarray = CsvArrayer('./FantasyPros_2021_Ros_QB_Rankings.csv');
+      setData(qbsarray)
       setLoading(false)
 
   }
@@ -181,6 +182,46 @@ function TradeScreen({ navigation }) {
       <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
   );
+}
+
+//CSV reading from https://dev.to/theallegrarr/read-csv-files-in-react-apps-without-installing-any-package-hn7
+
+function CsvReader(myfile){
+    const [csvFile, setCsvFile] = useState();
+    setCsvFile(myfile)
+
+    const submit = () => {
+        const file = csvFile;
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const text = e.target.result;
+            console.log(text);
+        }
+
+        reader.readAsText(file);
+    }
+}
+
+function CsvArrayer(thisfile){
+  const [csvArray, setCsvArray] = useState([]);
+  var str = CsvReader(thisfile);
+
+const processCSV = (str, delim=',') => {
+        const headers = str.slice(0,str.indexOf('\n')).split(delim);
+        const rows = str.slice(str.indexOf('\n')+1).split('\n');
+
+        const newArray = rows.map( row => {
+            const values = row.split(delim);
+            const eachObject = headers.reduce((obj, header, i) => {
+                obj[header] = values[i];
+                return obj;
+            }, {})
+            return eachObject;
+        })
+
+        setCsvArray(newArray)
+    }
 }
 
 const Stack = createNativeStackNavigator();
